@@ -1,0 +1,36 @@
+buildscript {
+
+	repositories {
+		mavenCentral()
+
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.19.RELEASE'
+		
+	}
+}
+
+plugins {
+	id 'java'
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'com.crud'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url "https://rep.spring.io/snapshot"}
+	maven  {url "https://repo.spring.io/milestone"}
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile('org.projectlombok:lombok')
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
