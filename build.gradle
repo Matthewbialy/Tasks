@@ -17,6 +17,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 
 group = 'com.crud'
@@ -36,4 +37,6 @@ dependencies {
 	compile('mysql:mysql-connector-java')
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	
+	providedRuntime('org.springfreamwork.boot:spring-boot-starter-tomcat')
 }
