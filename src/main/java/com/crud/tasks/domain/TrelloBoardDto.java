@@ -27,15 +27,15 @@ public class TrelloBoardDto {
         this.lists = lists;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public List<TrelloListDto> getLists() {
-        return lists;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public List<TrelloListDto> getLists() {
+//        return lists;
+//    }
 }

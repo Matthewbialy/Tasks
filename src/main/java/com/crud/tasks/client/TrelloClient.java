@@ -45,14 +45,14 @@ public class TrelloClient {
     private String trelloUserName;
 
     public List<TrelloBoardDto> getTrelloBoards() {
-        URI uri = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/kodillauser/boards")
+        URI uri = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/"+ trelloConfig.getTrelloUserName() + "/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
-                .queryParam("username",trelloUserName)
                 .queryParam("fields", "name,id")
                 .queryParam("lists", "all").build().encode().toUri();
 
         try {
+            System.out.println(uri);
             TrelloBoardDto[] boardsResponse = restTemplate.getForObject(uri, TrelloBoardDto[].class);
             return Arrays.asList(Optional.ofNullable(boardsResponse).orElse(new TrelloBoardDto[0]));
         } catch (RestClientException e) {

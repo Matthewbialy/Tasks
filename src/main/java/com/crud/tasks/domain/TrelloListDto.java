@@ -27,15 +27,4 @@ public class TrelloListDto {
         this.isClosed = isClosed;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean isClosed() {
-        return isClosed;
-    }
 }

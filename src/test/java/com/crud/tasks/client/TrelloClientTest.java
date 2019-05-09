@@ -17,7 +17,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TrelloClientTest {
@@ -36,12 +36,16 @@ public class TrelloClientTest {
 
         //Given
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
-        trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
+        trelloBoards[0] = new TrelloBoardDto("test_board", "test_id", new ArrayList<>());
 
         URI uri = new URI("http://test.com/members/mateuszbialy/boards?key=test&token=test&fields=name,id&lists=all");
 
+        System.out.println(uri);
         Mockito.when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
-
+        Mockito.when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
+        Mockito.when(trelloConfig.getTrelloAppKey()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloToken()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloUserName()).thenReturn("mateuszbialy");
         //When
         List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();
 
@@ -71,7 +75,10 @@ public class TrelloClientTest {
         );
 
         Mockito.when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
-
+        Mockito.when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
+        Mockito.when(trelloConfig.getTrelloAppKey()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloToken()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloUserName()).thenReturn("mateuszbialy");
         //When
         CreatedTrelloCard newCard = trelloClient.createdNewCard(trelloCardDto);
 
@@ -89,6 +96,11 @@ public class TrelloClientTest {
         URI uri = new URI("http://test.com/members/mateuszbialy/boards?key=test&token=test&fields=name,id&lists=all");
 
         Mockito.when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
+
+        Mockito.when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
+        Mockito.when(trelloConfig.getTrelloAppKey()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloToken()).thenReturn("test");
+        Mockito.when(trelloConfig.getTrelloUserName()).thenReturn("mateuszbialy");
 
         //when
         List<TrelloBoardDto> fetchedTrelloBoards = trelloClient.getTrelloBoards();

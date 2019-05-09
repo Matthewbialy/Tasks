@@ -5,7 +5,6 @@ import com.crud.tasks.config.TrelloConfig;
 import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
-import com.crud.tasks.domain.TrelloListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +18,6 @@ public class TrelloController {
     @Autowired
     private TrelloClient trelloClient;
 
-    @Autowired
-    private TrelloBoardDto trelloBoardDto;
-
-    @Autowired
-    private TrelloListDto trelloListDto;
 
     @Autowired
     private TrelloConfig trelloConfig;
@@ -38,7 +32,7 @@ public class TrelloController {
 
         System.out.println("This board contains lists: ");
 
-        trelloBoardDto.getLists().forEach(trelloListDto -> System.out.println(trelloListDto.getId() + " - " + trelloListDto.getName() + " - " + trelloListDto.isClosed()));
+        trelloBoards.forEach(trelloBoardDto-> System.out.println(trelloBoardDto.getId() + " - " + trelloBoardDto.getName()));
         }
 
     @RequestMapping(method = RequestMethod.POST, value = "getTrelloName")
